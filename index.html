@@ -307,7 +307,7 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; gap: 40px; }
             .btn-group, .social-links { justify-content: center; }
             .content-row { grid-template-columns: 1fr; gap: 20px; padding: 25px;}
             .row-sidebar { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
@@ -321,6 +321,7 @@
             .hero { padding-top: 100px; min-height: auto; } 
         }
         @media (max-width: 480px) {
+            .hero { gap: 25px; } 
             .hero-text h1 { font-size: 2.5rem; }
             .hero-text h2 { font-size: 1.4rem; }
             .section-title { font-size: 2rem; }
@@ -335,8 +336,10 @@
 </head>
 <body>
 
+    <!-- HTML5 Canvas for the Royal Quantum Network Background -->
     <canvas id="quantum-network" class="quantum-network"></canvas>
 
+    <!-- Navigation -->
     <nav>
         <a href="#" class="nav-logo">MLK<span class="accent">.</span></a>
         <div class="nav-links">
@@ -345,10 +348,12 @@
             <a href="#projects">Projects</a>
             <a href="#education">Education</a>
             <a href="#contact">Contact</a>
+            <!-- Theme Toggle Button -->
             <button id="theme-toggle" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <section id="about">
         <div class="container hero reveal">
             <div class="hero-text">
@@ -368,7 +373,7 @@
                     <a href="mailto:muthyalalalithkrishna@gmail.com" class="social-btn" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
                     <a href="https://maps.google.com/?q=Repalle,+Bapatla+District,+Andhra+Pradesh" target="_blank" class="social-btn" title="Location"><i class="fa-solid fa-location-dot"></i></a>
                     <a href="https://github.com/M-LalithKrishna" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/lalith-krishna-9369a4192/" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -379,6 +384,7 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE SECTION -->
     <section id="experience" class="section-alt">
         <div class="container">
             <div class="reveal">
@@ -409,12 +415,14 @@
         </div>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section id="projects">
         <div class="container">
             <div class="reveal">
                 <h2 class="section-title">Engineering Projects</h2>
             </div>
 
+            <!-- Project 1 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Facial Recognition</h3>
@@ -443,6 +451,7 @@
                 </div>
             </div>
 
+            <!-- Project 2 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Ag-Motor Control</h3>
@@ -470,6 +479,7 @@
                 </div>
             </div>
 
+            <!-- Project 3 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Smart Helmet</h3>
@@ -499,6 +509,7 @@
         </div>
     </section>
 
+    <!-- EDUCATION & EXPERTISE SECTION -->
     <section id="education" class="section-alt">
         <div class="container">
             <div class="reveal">
@@ -573,6 +584,7 @@
         </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact">
         <div class="container">
             <div class="reveal">
@@ -596,6 +608,7 @@
         </div>
     </section>
 
+    <!-- FOOTER SECTION -->
     <footer class="site-footer reveal">
         <div class="container">
             <div class="footer-content">
@@ -605,7 +618,7 @@
                 <div class="footer-socials">
                     <a href="mailto:muthyalalalithkrishna@gmail.com" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
                     <a href="https://github.com/M-LalithKrishna" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/lalith-krishna-9369a4192/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 
                 <div class="copyright">
@@ -615,6 +628,7 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT FOR ANIMATIONS & THEME -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
