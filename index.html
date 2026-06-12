@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muthyala Lalith Krishna | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- SYSTEM CITATION HIDER --- */
+        .sys-cite { display: none !important; }
+
+        /* --- STABLE ROYAL THEME VARIABLES (DARK MODE DEFAULT) --- */
+        :root {
+            --bg-deep: #050A15; 
+            --bg-section: #0B132B; 
+            --bg-card: #121E3F;
+            --bg-glass: rgba(11, 19, 43, 0.85);
+            --bg-glass-light: rgba(255, 255, 255, 0.03);
+            
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            
+            --gold-light: #F9E596;
+            --gold-main: #D4AF37;
+            --gold-dark: #997A15;
+            
+            --accent-navy: #4facfe;
+            --gradient: linear-gradient(135deg, var(--gold-main), var(--accent-navy));
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        /* --- STABLE LIGHT MODE OVERRIDES --- */
+        body.light-mode {
+            --bg-deep: #F4F7FA; 
+            --bg-section: #FFFFFF; 
+            --bg-card: #F8FAFC;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg-glass-light: rgba(30, 58, 138, 0.05);
+            
+            --border-color: rgba(212, 175, 55, 0.3);
+            
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            
+            --gold-light: #B8860B;
+            --accent-navy: #1E3A8A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* --- ROYAL QUANTUM NETWORK BACKGROUND --- */
+        .quantum-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -3;
+            pointer-events: none; /* Allows clicking through it */
+        }
+
+        /* --- CLICK ANYWHERE RIPPLE EFFECT --- */
+        .click-ripple {
+            position: fixed; border-radius: 50%;
+            border: 2px solid var(--gold-main);
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleAnim 0.8s ease-out forwards;
+        }
+        @keyframes rippleAnim {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 4px; box-shadow: 0 0 20px var(--gold-main); }
+            100% { transform: translate(-50%, -50%) scale(6); opacity: 0; border-width: 0px; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--bg-glass); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.4s ease; box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+        
+        .nav-logo { 
+            font-family: var(--font-heading); font-size: 2rem; font-weight: 700; 
+            color: var(--text-main); text-decoration: none; display: flex; align-items: baseline;
+            letter-spacing: 2px; transition: transform 0.3s ease;
+        }
+        .nav-logo .accent {
+            color: var(--gold-main); font-size: 2.5rem; line-height: 0;
+            animation: pulseGlow 2s infinite alternate;
+        }
+        .nav-logo:hover { transform: scale(1.05); text-shadow: 0 0 15px var(--gold-main); }
+        
+        .nav-links { display: flex; gap: 35px; align-items: center;}
+        .nav-links a {
+            color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.05rem;
+            position: relative; padding-bottom: 5px; transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--gold-main);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 0 8px var(--gold-main);
+        }
+        .nav-links a:hover { color: var(--gold-main); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Theme Toggle */
+        #theme-toggle {
+            background: none; border: none; font-size: 1.4rem; color: var(--gold-main);
+            cursor: pointer; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%; background: var(--bg-glass-light);
+            border: 1px solid var(--border-color);
+        }
+        #theme-toggle:hover { transform: rotate(180deg) scale(1.1); background: var(--gold-main); color: var(--bg-deep);}
+
+        /* --- LAYOUT WRAPPERS --- */
+        section { padding: 120px 10%; position: relative; }
+        .section-alt { background: var(--bg-section); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); transition: background 0.5s ease, border-color 0.5s ease;}
+        .container { max-width: 1100px; margin: 0 auto; }
+        
+        /* --- SCROLL-EXPANDING HEADING ANIMATION --- */
+        .section-title {
+            font-family: var(--font-heading); font-size: 3.2rem; color: var(--gold-main);
+            margin-bottom: 60px; position: relative; display: inline-block;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%;
+            transform: translateX(-50%);
+            width: 0; height: 3px; background: var(--gold-main);
+            transition: width 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 2px; box-shadow: 0 0 10px var(--gold-main);
+        }
+        .reveal.active .section-title::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        .hero { display: flex; align-items: center; gap: 60px; min-height: 100vh; padding-top: 150px;}
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-family: var(--font-heading); font-size: 4.5rem; line-height: 1.1; margin-bottom: 15px; }
+        .hero-text h2 { font-size: 1.8rem; color: var(--gold-main); font-weight: 400; margin-bottom: 15px; animation: gentlePulse 3s infinite alternate;}
+        
+        /* Quote Styling */
+        .hero-quote {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.35rem;
+            color: var(--text-main);
+            opacity: 0.85;
+            margin-bottom: 30px;
+        }
+        
+        .hero-text p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; max-width: 600px;}
+        
+        /* Action Buttons */
+        .btn-group { display: flex; gap: 20px; margin-bottom: 40px; }
+        .btn-primary, .btn-outline {
+            padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 1.05rem;
+            text-decoration: none; transition: all 0.4s ease; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-primary { background: var(--gold-main); color: #111; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); border: 2px solid var(--gold-main);}
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5); background: transparent; color: var(--gold-main); }
+        
+        .btn-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border-color); }
+        .btn-outline:hover { border-color: var(--gold-main); transform: translateY(-5px); color: var(--gold-main);}
+
+        /* Morphing Profile Frame */
+        .hero-image {
+            flex-shrink: 0; position: relative; width: 400px; height: 400px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .morph-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-main), var(--gold-light));
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite, spinMorph 15s linear infinite;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3); z-index: 1;
+        }
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        @keyframes spinMorph { 100% { transform: rotate(360deg); } }
+        
+        .hero-image img {
+            position: relative; z-index: 2; width: 92%; height: 92%;
+            object-fit: cover; border-radius: 50%; border: 5px solid var(--bg-deep); transition: transform 0.5s ease;
+        }
+        .hero-image:hover img { transform: scale(1.05); }
+
+        /* Social Links */
+        .social-links { display: flex; gap: 20px; }
+        .social-btn {
+            width: 50px; height: 50px; border-radius: 50%;
+            border: 1px solid var(--border-color); color: var(--text-main);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem; text-decoration: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--bg-glass-light);
+        }
+        .social-btn:hover { background: var(--gold-main); color: #111; transform: translateY(-8px) rotate(360deg); border-color: var(--gold-main); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);}
+
+        /* --- CONTENT ROWS (Unboxed Layout) --- */
+        .content-row {
+            display: grid; grid-template-columns: 280px 1fr; gap: 50px; margin-bottom: 60px;
+            padding-bottom: 60px; border-bottom: 1px solid var(--border-color);
+            transition: transform 0.4s ease, border-color 0.5s ease;
+        }
+        .content-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .content-row:hover { transform: translateX(10px); }
+
+        .row-sidebar h3 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--gold-main); margin-bottom: 10px;}
+        .row-sidebar p { color: var(--text-muted); font-size: 0.95rem; font-weight: 500;}
+
+        .row-body h4 { font-size: 1.6rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px;}
+        .row-body h4 i { color: var(--gold-main); font-size: 1.3rem; animation: floatIcon 3s ease-in-out infinite;}
+        
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); text-shadow: 0 5px 10px rgba(212, 175, 55, 0.4); }
+        }
+
+        .row-body p { color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; margin-bottom: 15px;}
+        .row-body ul { list-style: none; margin-bottom: 20px;}
+        .row-body ul li { margin-bottom: 12px; color: var(--text-muted); display: flex; gap: 15px; font-size: 1.05rem; transition: transform 0.3s;}
+        .row-body ul li:hover { transform: translateX(8px); color: var(--text-main); }
+        .row-body ul li::before { content: '✧'; color: var(--gold-main); font-size: 1.2rem; }
+
+        /* --- ANIMATED SKILL TAGS --- */
+        .tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px;}
+        .tag {
+            position: relative; padding: 10px 20px; 
+            border: 1px solid var(--border-color); border-radius: 50px; 
+            color: var(--text-main); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; overflow: hidden; z-index: 1; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--bg-card);
+        }
+        .tag i { font-size: 1.05rem; }
+        .tag::before {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+            width: var(--level); background: rgba(212, 175, 55, 0.2); z-index: -1;
+            transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .tag-level {
+            max-width: 0; opacity: 0; overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--gold-main); color: #111; padding: 0;
+            border-radius: 12px; font-weight: 800; font-size: 0.75rem; white-space: nowrap;
+        }
+        .tag:hover { border-color: var(--gold-main); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15); color: var(--gold-main); }
+        .tag:hover::before { transform: scaleX(1); }
+        .tag:hover .tag-level { max-width: 50px; opacity: 1; padding: 3px 8px; margin-left: 5px; }
+
+        /* --- FOOTER SECTION --- */
+        .site-footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px 30px;
+            margin-top: 80px;
+            text-align: center;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+        .footer-content {
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
+            max-width: 800px; margin: 0 auto;
+        }
+        .footer-logo {
+            font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; color: var(--text-main);
+            letter-spacing: 2px;
+        }
+        .footer-content p { color: var(--text-muted); font-size: 1.05rem; }
+        .footer-socials { display: flex; gap: 15px; margin: 15px 0; }
+        .footer-socials a {
+            width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--border-color);
+            display: flex; justify-content: center; align-items: center; color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: var(--bg-glass-light);
+            font-size: 1.2rem;
+        }
+        .footer-socials a:hover {
+            background: var(--gold-main); color: #111; border-color: var(--gold-main); transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        .copyright { color: var(--text-muted); font-size: 0.95rem; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; width: 100%;}
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .btn-group, .social-links { justify-content: center; }
+            .content-row { grid-template-columns: 1fr; gap: 20px; padding: 25px;}
+            .row-sidebar { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+            .hero-image { width: 300px; height: 300px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 3.2rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HTML5 Canvas for the Royal Quantum Network Background -->
+    <canvas id="quantum-network" class="quantum-network"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">MLK<span class="accent">.</span></a>
+        <div class="nav-links">
+            <a href="#about">Overview</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="about">
+        <div class="container hero reveal">
+            <div class="hero-text">
+                <h1>Muthyala Lalith Krishna<span class="sys-cite"></span></h1>
+                <h2>Engineering Graduate & Tech Innovator<span class="sys-cite"></span></h2>
+                <div class="hero-quote">"Bridging the gap between physical hardware and intelligent software."</div>
+                <p>
+                    A versatile and observant professional with a solid background in managing projects and turning data into practical results.<span class="sys-cite"></span> I enjoy solving everyday technical challenges and finding ways to make processes run more smoothly.<span class="sys-cite"></span> Whether working independently or as part of a team, I focus on staying adaptable and applying a clear, practical approach to help our group meet its goals.<span class="sys-cite"></span>
+                </p>
+                
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+                    <a href="Muthyala_Lalith_Krishna.pdf" target="_blank" download class="btn-outline"><i class="fa-solid fa-download"></i> Download Resume</a>
+                </div>
+
+                <div class="social-links">
+                    <a href="mailto:muthyalalalithkrishna@gmail.com" class="social-btn" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://maps.google.com/?q=Repalle,+Bapatla+District,+Andhra+Pradesh" target="_blank" class="social-btn" title="Location"><i class="fa-solid fa-location-dot"></i></a>
+                    <a href="https://github.com/M-LalithKrishna" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="morph-bg"></div>
+                <img src="iaMLK.jpg" alt="Muthyala Lalith Krishna">
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section-alt">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3>BE Sevro Systems</h3>
+                    <p>Guntur, A.P.<span class="sys-cite"></span></p>
+                    <p style="color: var(--gold-main); margin-top: 5px; font-weight: 600;">Nov 2023 - Present<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-microchip"></i> Assistant System Engineer<span class="sys-cite"></span></h4>
+                    <p>Spearheading the maintenance and diagnostic processes for critical automation hardware. Focused on minimizing downtime through proactive problem-solving and rigorous compliance checking.</p>
+                    <ul>
+                        <li>Assisted in installing, testing, and maintaining highly calibrated servo motors and advanced automation systems.<span class="sys-cite"></span></li>
+                        <li>Troubleshot complex control circuits and Programmable Logic Controllers (PLCs) to resolve technical issues rapidly.<span class="sys-cite"></span></li>
+                        <li>Collaborated tightly with the core engineering team on routine system diagnostics, compliance checks, and infrastructure setup.<span class="sys-cite"></span></li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag" style="--level: 95%;"><i class="fa-solid fa-cogs"></i> Servo Systems <span class="tag-level">95%</span></span>
+                        <span class="tag" style="--level: 90%;"><i class="fa-solid fa-microchip"></i> PLCs <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-wrench"></i> Circuit Diagnostics <span class="tag-level">85%</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="section-title">Engineering Projects</h2>
+            </div>
+
+            <!-- Project 1 -->
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3 style="margin-bottom: 5px;">Facial Recognition</h3>
+                    <p style="margin-bottom: 5px;"><strong>Attendance System</strong><span class="sys-cite"></span></p>
+                    <p style="color: var(--gold-main); font-weight: 600;">Duration: 6 Months<span class="sys-cite"></span></p>
+                    <p style="margin-top: 10px; font-size: 0.85rem;">Guide: Dr. K. Annapurna<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-camera-retro"></i> Biometric Identification System</h4>
+                    <p>A sophisticated computer vision application designed to replace traditional roll-calls with high-speed automated tracking. Achieved detection speeds of 0.01 seconds per face frame.<span class="sys-cite"></span></p>
+                    <ul>
+                        <li>Engineered an automated attendance tracking solution utilizing the <strong>Haar-cascade classifier</strong> and <strong>OpenCV</strong>.<span class="sys-cite"></span></li>
+                        <li>Implemented the <strong>Local Binary Pattern Histogram (LBPH)</strong> algorithm for accurate facial recognition matching.<span class="sys-cite"></span></li>
+                        <li>Managed data processing through a custom Graphical User Interface (GUI) built with Tkinter, linking directly to Excel.<span class="sys-cite"></span></li>
+                        <li>Successfully increased overall institutional tracking efficiency by 30%.<span class="sys-cite"></span></li>
+                    </ul>
+                    <div style="margin-bottom: 20px;">
+                        <a href="Face%20Recognition%20Based%20Attendance%20System.pdf" target="_blank" class="btn-outline" style="padding: 10px 20px; font-size: 0.95rem;"><i class="fa-solid fa-file-pdf"></i> View Project Report</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag" style="--level: 90%;"><i class="fa-brands fa-python"></i> Python <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-eye"></i> OpenCV <span class="tag-level">85%</span></span>
+                        <span class="tag" style="--level: 80%;"><i class="fa-solid fa-brain"></i> Machine Learning <span class="tag-level">80%</span></span>
+                        <span class="tag" style="--level: 75%;"><i class="fa-solid fa-window-maximize"></i> Tkinter GUI <span class="tag-level">75%</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3 style="margin-bottom: 5px;">Ag-Motor Control</h3>
+                    <p style="margin-bottom: 5px;"><strong>GSM-Based IoT System</strong><span class="sys-cite"></span></p>
+                    <p style="color: var(--gold-main); font-weight: 600;">Duration: 2 Months<span class="sys-cite"></span></p>
+                    <p style="margin-top: 10px; font-size: 0.85rem;">Guide: Mr. Mohammad Taj<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-satellite-dish"></i> Autonomous Irrigation Network</h4>
+                    <p>A smart agriculture solution utilizing an <strong>Arduino UNO</strong> and a <strong>SIM900A GSM Module</strong> to bridge the gap between physical farming infrastructure and remote digital monitoring.<span class="sys-cite"></span></p>
+                    <ul>
+                        <li>Designed an automated irrigation system to monitor environmental variables using Soil Moisture, Rain, and <strong>DHT-11</strong> sensors.<span class="sys-cite"></span></li>
+                        <li>Programmed the microcontroller to transmit real-time text message alerts to farmers regarding field conditions.<span class="sys-cite"></span></li>
+                        <li>Optimized resource allocation via relay-controlled DC motors, effectively reducing water usage by 20%.<span class="sys-cite"></span></li>
+                    </ul>
+                    <div style="margin-bottom: 20px;">
+                        <a href="GSM%20BASED%20AGRICULTURAL%20MOTOR%20CONTROL.pdf" target="_blank" class="btn-outline" style="padding: 10px 20px; font-size: 0.95rem;"><i class="fa-solid fa-file-pdf"></i> View Project Report</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag" style="--level: 95%;"><i class="fa-solid fa-microchip"></i> Arduino UNO <span class="tag-level">95%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-code"></i> C++ <span class="tag-level">85%</span></span>
+                        <span class="tag" style="--level: 90%;"><i class="fa-solid fa-signal"></i> GSM Architecture <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-toggle-on"></i> Hardware Relays <span class="tag-level">85%</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3 style="margin-bottom: 5px;">Smart Helmet</h3>
+                    <p style="margin-bottom: 5px;"><strong>Auto-Ignition Safety</strong><span class="sys-cite"></span></p>
+                    <p style="color: var(--gold-main); font-weight: 600;">Duration: 2 Months<span class="sys-cite"></span></p>
+                    <p style="margin-top: 10px; font-size: 0.85rem;">Guide: Dr. S. K. Tiwari<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-motorcycle"></i> Immobilizer & Breathalyzer Unit</h4>
+                    <p>A critical safety architecture designed to interface directly with a motorcycle's starter relay, ensuring absolute compliance with helmet usage and zero-tolerance for drunk driving.<span class="sys-cite"></span></p>
+                    <ul>
+                        <li>Developed a proactive safety mechanism utilizing an <strong>MQ-3 alcohol sensor</strong> to prevent vehicle ignition upon alcohol detection.<span class="sys-cite"></span></li>
+                        <li>Integrated a physical push-button switch inside the helmet to enforce mandatory headgear placement before starting.<span class="sys-cite"></span></li>
+                        <li>Implemented real-time alert protocols displayed on a <strong>16x2 LCD screen</strong>, significantly enhancing overall rider safety.<span class="sys-cite"></span></li>
+                    </ul>
+                    <div style="margin-bottom: 20px;">
+                        <a href="Smart%20Helmet%20with%20Alcohol%20Detection.pdf" target="_blank" class="btn-outline" style="padding: 10px 20px; font-size: 0.95rem;"><i class="fa-solid fa-file-pdf"></i> View Project Report</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag" style="--level: 90%;"><i class="fa-solid fa-code"></i> Embedded C <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 95%;"><i class="fa-solid fa-satellite-dish"></i> Sensor Integration <span class="tag-level">95%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-network-wired"></i> Circuit Design <span class="tag-level">85%</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDUCATION & EXPERTISE SECTION -->
+    <section id="education" class="section-alt">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="section-title">Education & Expertise</h2>
+            </div>
+
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3>Academic History</h3>
+                    <p>Vignan University & Polytechnic<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-graduation-cap"></i> B.Tech in Electronics & Communication</h4>
+                    <p><strong>Vignan University, Guntur</strong> | Aug 2020 - Jul 2023<span class="sys-cite"></span></p>
+                    <p style="margin-bottom: 25px;">Graduated with a <strong>CGPA of 8.33</strong>.<span class="sys-cite"></span> Completed advanced coursework in Digital System Design, Digital Signal Processing, Embedded Systems, Very Large-Scale Integration (VLSI), and Internet of Things (IoT).<span class="sys-cite"></span></p>
+                    
+                    <h4><i class="fa-solid fa-scroll"></i> Diploma in Electronics & Communication</h4>
+                    <p><strong>AANM & VVRSR Polytechnic, Gudlavalleru</strong> | Jun 2017 - Jul 2020<span class="sys-cite"></span></p>
+                    <p>Graduated with a <strong>Percentage of 89.8%</strong>.<span class="sys-cite"></span> Foundational coursework in Circuit Analysis and Communication Systems.<span class="sys-cite"></span></p>
+                </div>
+            </div>
+
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3>Technical Skills</h3>
+                    <p>Software & Hardware<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-layer-group"></i> Core Competencies</h4>
+                    <p><strong>Automation & Hardware:</strong> Servo Systems, Programmable Logic Controllers (PLCs), PCB Design, Circuit Analysis.<span class="sys-cite"></span></p>
+                    <p><strong>Core Electronics:</strong> Embedded Systems, Digital & Analog Communication, Artificial Intelligence (AI) & Machine Learning (ML) Basics.<span class="sys-cite"></span></p>
+                    
+                    <h5 style="margin-top: 25px; color: var(--gold-main); font-size: 1.15rem; font-family: var(--font-heading);">Hardware & Core Electronics</h5>
+                    <div class="tags" style="margin-top: 12px; margin-bottom: 25px;">
+                        <span class="tag" style="--level: 95%;"><i class="fa-solid fa-cogs"></i> Servo Systems <span class="tag-level">95%</span></span>
+                        <span class="tag" style="--level: 90%;"><i class="fa-solid fa-microchip"></i> PLCs <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 90%;"><i class="fa-solid fa-chess-board"></i> PCB Design <span class="tag-level">90%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-memory"></i> Embedded Systems <span class="tag-level">85%</span></span>
+                        <span class="tag" style="--level: 80%;"><i class="fa-solid fa-layer-group"></i> VLSI <span class="tag-level">80%</span></span>
+                    </div>
+
+                    <h5 style="margin-top: 30px; color: var(--gold-main); font-size: 1.15rem; font-family: var(--font-heading);">Additional Skills (Software / IT)</h5>
+                    <p style="margin-top: 8px;"><strong>Software Engineering:</strong> Python, Java, SQL (MySQL), SAS Programming, HTML/CSS.<span class="sys-cite"></span></p>
+                    <div class="tags" style="margin-top: 12px;">
+                        <span class="tag" style="--level: 85%;"><i class="fa-brands fa-python"></i> Python <span class="tag-level">85%</span></span>
+                        <span class="tag" style="--level: 80%;"><i class="fa-brands fa-java"></i> Java <span class="tag-level">80%</span></span>
+                        <span class="tag" style="--level: 85%;"><i class="fa-solid fa-database"></i> MySQL <span class="tag-level">85%</span></span>
+                        <span class="tag" style="--level: 75%;"><i class="fa-solid fa-chart-line"></i> SAS <span class="tag-level">75%</span></span>
+                        <span class="tag" style="--level: 70%;"><i class="fa-brands fa-html5"></i> HTML/CSS <span class="tag-level">70%</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-row reveal">
+                <div class="row-sidebar">
+                    <h3>Certifications &</h3>
+                    <h3>Publications</h3>
+                    <p>Springer & Cisco<span class="sys-cite"></span></p>
+                </div>
+                <div class="row-body">
+                    <h4><i class="fa-solid fa-book-journal-whills"></i> Academic Publishing</h4>
+                    <p>Muthyala Lalith Krishna et al. "Smart Agriculture Monitoring System to Prevent Water Wastage". In: Proceedings of the International conference on Advances in Materials and Manufacturing Technology (ICAMMT 2022), 2023. Springer, Singapore.<span class="sys-cite"></span></p>
+                    
+                    <h4 style="margin-top: 30px;"><i class="fa-solid fa-certificate"></i> Verified Certifications</h4>
+                    <ul>
+                        <li>Python & Java Programming (NPTEL)<span class="sys-cite"></span></li>
+                        <li>CCNP Routing and Switching (Cisco)<span class="sys-cite"></span></li>
+                        <li>Embedded Systems Fundamentals (APSSDC)<span class="sys-cite"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="section-title">Establish Connection</h2>
+            </div>
+            
+            <div class="content-row reveal" style="border: none; padding-bottom: 0;">
+                <div class="row-sidebar">
+                    <h3>Contact Information</h3>
+                    <p>Currently open to new engineering opportunities.</p>
+                </div>
+                <div class="row-body">
+                    <p style="font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <i class="fa-solid fa-envelope" style="color: var(--gold-main); font-size: 1.5rem;"></i> muthyalalalithkrishna@gmail.com<span class="sys-cite"></span>
+                    </p>
+                    <p style="font-size: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 15px;">
+                        <i class="fa-solid fa-phone" style="color: var(--gold-main); font-size: 1.5rem;"></i> +91 9948766058<span class="sys-cite"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="site-footer reveal">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">MLK<span class="accent">.</span></div>
+                <p>Bridging the gap between physical hardware and intelligent software.</p>
+                
+                <div class="footer-socials">
+                    <a href="mailto:muthyalalalithkrishna@gmail.com" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://github.com/M-LalithKrishna" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2026 Muthyala Lalith Krishna. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR ANIMATIONS & THEME -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. INTERACTIVE CLICK RIPPLE EFFECT ---
+            document.addEventListener('click', function(e) {
+                if(e.target.tagName === 'A' || e.target.closest('a') || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+
+                let ripple = document.createElement('div');
+                ripple.className = 'click-ripple';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => { ripple.remove(); }, 800);
+            });
+
+            // --- 2. SCROLL REVEAL & UNDERLINE ANIMATIONS ---
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+            
+            // Trigger the hero section immediately upon load
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('active');
+            }, 100);
+
+            // --- 3. ROCK-SOLID LIGHT/DARK MODE TOGGLE ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                const isLightMode = document.body.classList.contains('light-mode');
+                themeToggleBtn.innerHTML = isLightMode ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            });
+            
+            // --- 4. ROYAL QUANTUM NETWORK CANVAS (INTERACTIVE BACKGROUND) ---
+            const canvas = document.getElementById('quantum-network');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Royal color palette for the network nodes
+            const colors = ['#D4AF37', '#F9E596', '#9D4EDD'];
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.8; // Slow drifting speed
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.radius = Math.random() * 2 + 1;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    // Bounce off walls smoothly
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+
+            // Create particles
+            for (let i = 0; i < 75; i++) {
+                particles.push(new Particle());
+            }
+
+            // Track mouse position
+            let mouse = { x: null, y: null };
+            window.addEventListener('mousemove', e => { 
+                mouse.x = e.clientX; 
+                mouse.y = e.clientY; 
+            });
+            window.addEventListener('mouseout', () => { 
+                mouse.x = null; 
+                mouse.y = null; 
+            });
+
+            // Animation Loop
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    
+                    // Draw connections between nearby particles (Gold network)
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            // Opacity relies on distance (closer = brighter gold)
+                            ctx.strokeStyle = `rgba(212, 175, 55, ${0.4 - dist/300})`; 
+                            ctx.lineWidth = 0.6;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+
+                    // Draw connections from particles to the mouse (Royal Purple network)
+                    if (mouse.x && mouse.y) {
+                        const dx = particles[i].x - mouse.x;
+                        const dy = particles[i].y - mouse.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 160) {
+                            ctx.beginPath();
+                            // Opacity relies on distance (closer = brighter purple)
+                            ctx.strokeStyle = `rgba(157, 78, 221, ${0.6 - dist/260})`; 
+                            ctx.lineWidth = 1;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        });
+    </script>
+</body>
+</html>
