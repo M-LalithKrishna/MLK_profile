@@ -317,15 +317,26 @@
             .nav-links { display: none; }
             .hero-text h1 { font-size: 3.2rem; }
             .section-title { font-size: 2.5rem; }
+            section { padding: 80px 5%; } /* Prevent side-squishing on small screens */
+            .hero { padding-top: 100px; min-height: auto; } 
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text h2 { font-size: 1.4rem; }
+            .section-title { font-size: 2rem; }
+            .hero-image { width: 250px; height: 250px; }
+            .btn-group { flex-direction: column; width: 100%; gap: 15px; }
+            .btn-primary, .btn-outline { justify-content: center; width: 100%; }
+            .nav-logo { font-size: 1.5rem; }
+            .content-row { padding: 15px; }
+            .row-body h4 { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HTML5 Canvas for the Royal Quantum Network Background -->
     <canvas id="quantum-network" class="quantum-network"></canvas>
 
-    <!-- Navigation -->
     <nav>
         <a href="#" class="nav-logo">MLK<span class="accent">.</span></a>
         <div class="nav-links">
@@ -334,12 +345,10 @@
             <a href="#projects">Projects</a>
             <a href="#education">Education</a>
             <a href="#contact">Contact</a>
-            <!-- Theme Toggle Button -->
             <button id="theme-toggle" title="Toggle Light/Dark Mode"><i class="fa-solid fa-sun"></i></button>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section id="about">
         <div class="container hero reveal">
             <div class="hero-text">
@@ -370,7 +379,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION -->
     <section id="experience" class="section-alt">
         <div class="container">
             <div class="reveal">
@@ -401,14 +409,12 @@
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
     <section id="projects">
         <div class="container">
             <div class="reveal">
                 <h2 class="section-title">Engineering Projects</h2>
             </div>
 
-            <!-- Project 1 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Facial Recognition</h3>
@@ -437,7 +443,6 @@
                 </div>
             </div>
 
-            <!-- Project 2 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Ag-Motor Control</h3>
@@ -465,7 +470,6 @@
                 </div>
             </div>
 
-            <!-- Project 3 -->
             <div class="content-row reveal">
                 <div class="row-sidebar">
                     <h3 style="margin-bottom: 5px;">Smart Helmet</h3>
@@ -495,7 +499,6 @@
         </div>
     </section>
 
-    <!-- EDUCATION & EXPERTISE SECTION -->
     <section id="education" class="section-alt">
         <div class="container">
             <div class="reveal">
@@ -570,7 +573,6 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section id="contact">
         <div class="container">
             <div class="reveal">
@@ -594,7 +596,6 @@
         </div>
     </section>
 
-    <!-- FOOTER SECTION -->
     <footer class="site-footer reveal">
         <div class="container">
             <div class="footer-content">
@@ -608,13 +609,12 @@
                 </div>
                 
                 <div class="copyright">
-                    &copy; 2026 Muthyala Lalith Krishna. All Rights Reserved.
+                    © 2026 Muthyala Lalith Krishna. All Rights Reserved.
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR ANIMATIONS & THEME -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
